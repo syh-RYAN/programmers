@@ -1,6 +1,6 @@
 def solution(arr):
-    a = 0
-    for i in arr:
-        a += i
-    answer = a / len(arr)
+    if len(arr) == 0 :
+        answer = 0
+    else : 
+        answer = sum(arr) / len(arr)
     return answer
