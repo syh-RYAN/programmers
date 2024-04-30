@@ -1,12 +1,18 @@
 -- 코드를 작성해주세요
-select 
-    count(*) as FISH_COUNT
-    , case
-        when max(length) <=10 then 10
-        else max(length)
-      end as MAX_LENGTH
-    , FISH_TYPE
-from fish_info
-group by fish_type
-having avg(length)>=33
-ORDER BY fish_type
+WITH z AS (
+    SELECT * ,
+        CASE 
+            WHEN LENGTH IS NULL THEN 10
+            ELSE LENGTH
+        END AS LENGTH1
+    FROM fish_info
+)
+
+SELECT  COUNT(*) AS FISH_COUNT
+    ,   MAX(LENGTH1) AS MAX_LENGTH
+    ,   FISH_TYPE
+FROM Z
+GROUP BY FISH_TYPE
+HAVING AVG(LENGTH1)>=33
+ORDER BY FISH_TYPE
+;
